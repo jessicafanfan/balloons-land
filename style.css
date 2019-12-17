@@ -1,0 +1,181 @@
+@font-face {
+  font-family: "Maison Mono";
+  font-display: swap;
+  src: url("./fonts/Maison-Mono-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+}
+
+body {
+  margin: 0;
+  background: #faf6ef;
+  font-family: "Maison Mono";
+  font-weight: 700;
+  color: black;
+}
+button {
+  position: absolute;
+  outline: none;
+  border: none;
+  font-family: "Maison Mono";
+  text-transform: uppercase;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+}
+button .button-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  border-radius: 1000px;
+  transition: transform 0.45s cubic-bezier(0.17, 0.67, 0.3, 1.33);
+}
+
+.balloon-holder {
+  width: 100vw;
+  height: 85vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.balloon {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  transition: 0.3s width ease-out, 0.3s height ease-out;
+  transform-origin: center center;
+  z-index: 1;
+  position: relative;
+}
+.balloon .balloon-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.balloon svg {
+  transform-origin: center center;
+}
+.balloon .pop-anim {
+  position: relative;
+}
+.balloon .pop-anim svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+}
+
+.balloon.balloon1 {
+  transform: scale(1);
+  display: block;
+}
+.balloon.balloon2 {
+  display: none;
+}
+.balloon.balloon2 .balloon-svg {
+  transform: scale(0);
+  transition: transform 0.45s cubic-bezier(0.17, 0.67, 0.3, 1.33);
+}
+.balloon.released {
+  position: absolute;
+  will-change: top, left;
+}
+
+.release-button {
+  top: 8vw;
+  right: 8vw;
+  width: 25vh;
+  height: 25vh;
+  z-index: 2;
+  border: none;
+  color: black;
+  pointer-events: none;
+}
+.floating .release-button {
+  pointer-events: all;
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.release-button .button-bg {
+  transform: scale(0);
+  transform-origin: center center;
+}
+.release-button .button-bg svg {
+  width: 100%;
+  animation: rotating 50s linear infinite;
+}
+.release-button .button-label {
+  overflow: hidden;
+  transform: rotate(-15deg);
+}
+.release-button .button-label div {
+  transform: translateY(100%);
+  transition: 0.3s transform ease-in-out;
+}
+.release-button .button-label {
+  user-select: none;
+}
+.floating .release-button .button-bg {
+  transform: scale(1);
+}
+.floating .release-button .button-label div {
+  transform: translateY(0);
+}
+.floating .release-button:hover .button-bg {
+  transform: scale(0.9);
+  transition-delay: 0.01s;
+}
+.floating .release-button:active .button-bg {
+  transform: scale(0.8);
+}
+
+#balloon-pump-btn {
+  height: 5vh;
+  width: 15vw;
+  border-radius: 5vh;
+  position: fixed;
+  bottom: 5vh;
+  left: 42.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s color ease, 0.3s background ease;
+  z-index: 5;
+}
+#balloon-pump-btn .button-bg {
+  background: #ffc755;
+  transform: scale(1);
+  transition: 0.3s background ease,
+    transform 0.45s cubic-bezier(0.17, 0.67, 0.3, 1.33);
+}
+#balloon-pump-btn:hover .button-bg {
+  transform: scale(0.95);
+}
+#balloon-pump-btn:hover .button-label {
+  transition: 0.3s color ease;
+}
+#balloon-pump-btn:active .button-bg {
+  transform: scale(0.85);
+}
+
+.balloon-popper {
+  height: 6vh;
+  position: fixed;
+  top: 5vh;
+  left: 5vh;
+  z-index: 5;
+  transform: rotate(-180deg);
+}
